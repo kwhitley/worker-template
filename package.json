@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "worker-template",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Worker API Template",
   "module": "./dist/index.mjs",
   "scripts": {
@@ -18,7 +18,8 @@
     "esbuild": "^0.15.10",
     "eslint": "^8.24.0",
     "eslint-plugin-jest": "^27.0.4",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "yarn-release": "^1.10.3"
   },
   "dependencies": {
     "cloudflare-kv-store": "^0.5.2",
