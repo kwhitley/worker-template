@@ -17,7 +17,11 @@ export class Counter extends createDurable({ autoReturn: true, autoPersist: true
     this.counter = 0
   }
 
+  // customize the shape of the return
   toJSON() {
-    return this.counter
+    return {
+      id: this.state.idFromState,
+      counter: this.counter,
+    }
   }
 }
