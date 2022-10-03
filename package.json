@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "worker-template",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Worker API Template",
   "module": "./dist/index.mjs",
   "scripts": {
