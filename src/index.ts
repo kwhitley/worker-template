@@ -1,11 +1,11 @@
 import { createCors } from 'itty-cors'
 import { Router } from 'itty-router'
 import { error, json, missing } from 'itty-router-extras'
-import { version } from '../package.json'
-import { routerV1 } from './api/v1'
+import { version } from '@root/package.json'
+import { routerV1 } from '~/api/v1'
 
 // export durable object class, per spec
-export * from './objects/Counter'
+export * from '~/objects/Counter'
 
 const { preflight, corsify } = createCors({
   methods: ['GET', 'POST'],
@@ -24,6 +24,6 @@ router
 export default {
   fetch: (...args) => router
                         .handle(...args)
-                        .then(corsify)
-                        .catch(err => error(500, err.stack)),
+                        .catch((err) => error(500, err.stack))
+                        .then(corsify),
 }

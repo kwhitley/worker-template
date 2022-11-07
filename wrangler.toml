@@ -1,22 +1,50 @@
 account_id = "{my account ID here}"
-name = "worker-template"
+name = "worker-template-dev"
 compatibility_date = "2022-03-12"
 workers_dev = false
-main = "./src/index.js"
+main = "./src/index.ts"
 routes = [
   "my.url.com/*",
   "my.url.com"
 ]
 
-kv_namespaces = [
-  { binding = "{NAME}", id = "{ID here}", preview_id = "{preview/dev ID here}" },
+[vars]
+ENVIRONMENT = "dev"
+
+[[kv_namespaces]]
+binding = "KV"
+preview_id = "{id here}"
+id = "{id here}"
+
+# [[r2_buckets]]
+# binding = 'R2'
+# bucket_name = 'bucket-prod'
+# preview_bucket_name = 'bucket-dev'
+
+[durable_objects]
+bindings = [
+  { name = "Counter", class_name = "Counter" },
 ]
 
-# [durable_objects]
-# bindings = [
-#   { name = "Counter", class_name = "Counter" },
-# ]
+[[migrations]]
+tag = "v1"
+new_classes = ["Counter"]
 
-# [[migrations]]
-# tag = "v1"
-# new_classes = ["Counter"]
+[env.prod]
+name = "worker-template-prod"
+routes = [
+  "my.url.com/*",
+  "my.url.com",
+]
+durable_objects.bindings = [
+  { name = "Counter", class_name = "Counter" },
+]
+kv_namespaces = [
+  { binding = "KV", id = "{id here}" }
+]
+r2_buckets = [
+  { binding = "R2", bucket_name = "bucket-prod" }
+]
+
+[env.prod.vars]
+ENVIRONMENT = "production"
